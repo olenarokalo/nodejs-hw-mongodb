@@ -5,7 +5,7 @@ import { getAllContacts, getContactById } from './services/contacts.js';
 
 import { env } from './utils/env.js';
 
-const PORT = Number(env('PORT', '4000'));
+const PORT = Number(env('PORT', '8000'));
 
 export const setupServer = () => {
   const app = express();
