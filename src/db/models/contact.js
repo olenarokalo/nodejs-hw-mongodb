@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { generList } from '../../contacts/contacts.js';
+import { generList } from '../../constans/contacts.js';
 const contactsSchema = new Schema(
   {
     name: {
@@ -22,6 +22,11 @@ const contactsSchema = new Schema(
       enum: generList,
       required: true,
       default: 'personal',
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
     },
   },
   {

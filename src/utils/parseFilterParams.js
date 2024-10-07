@@ -1,4 +1,4 @@
-import { generList } from '../contacts/contacts';
+import { generList } from '../constans/contacts';
 
 const parseType = (type) => {
   const isString = typeof contactType === 'string';

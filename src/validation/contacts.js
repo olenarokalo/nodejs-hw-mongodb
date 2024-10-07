@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { generList } from '../contacts/contacts.js';
+import { generList } from '../constans/contacts.js';
 
 export const createStudentSchema = Joi.object({
   name: Joi.string().min(3).max(20).required().messages({

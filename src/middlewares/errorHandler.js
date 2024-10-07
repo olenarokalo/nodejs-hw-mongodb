@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, reg, res, next) => {
   if (err instanceof createHttpError.HttpError) {
     res.status(err.status || 500).json({
       status: err.status || 500,
