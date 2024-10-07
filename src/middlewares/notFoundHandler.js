@@ -5,3 +5,4 @@ export const notFoundHandler = (req, res, next) => {
     data: null,
   });
 };
+

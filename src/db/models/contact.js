@@ -1,4 +1,5 @@
 import { model, Schema } from 'mongoose';
+import { generList } from '../../contacts/contacts.js';
 const contactsSchema = new Schema(
   {
     name: {
@@ -18,7 +19,7 @@ const contactsSchema = new Schema(
     },
     contactType: {
       type: String,
-      enum: ['work', 'home', 'personal'],
+      enum: generList,
       required: true,
       default: 'personal',
     },
