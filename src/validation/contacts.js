@@ -10,13 +10,11 @@ export const createStudentSchema = Joi.object({
     'string.pattern.base': 'Phone number must be in format +380XXXXXXXXX',
     'any.required': 'Phone number is required',
   }),
-  email: Joi.string().email().min(3).max(20).required().messages({
+  email: Joi.string().email().min(3).max(20).messages({
     'string.email': 'Email must be a valid email',
-    'any.required': 'Email is required',
   }),
-  isFavourite: Joi.boolean().required().messages({
+  isFavourite: Joi.boolean().messages({
     'boolean.base': 'Favourite must be a boolean',
-    'any.required': 'Favourite is required',
   }),
   contactType: Joi.string()
     .valid(...generList)
