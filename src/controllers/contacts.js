@@ -8,6 +8,9 @@ import {
 } from '../services/contacts.js';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
+import { saveFileUploadDir } from '../utils/saveFileToUploadDir.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { env } from '../utils/env.js';
 
 export const getAllContactsController = async (req, res, next) => {
   const { page, perPage } = parsePaginationParams(req.query);
@@ -47,7 +50,22 @@ export const getContactByIdController = async (req, res, next) => {
 
 export const createContactController = async (req, res) => {
   const { _id: userId } = req.user;
-  const contact = await createContact({ ...req.body, userId });
+  const photo = req.file;
+
+  let photoUrl;
+
+  if (photo) {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileUploadDir(photo);
+    }
+  }
+  const contact = await createContact({
+    ...req.body,
+    userId,
+    photo: photoUrl,
+  });
 
   res.status(201).json({
     status: 201,
@@ -85,7 +103,7 @@ export const upsertContactController = async (req, res, next) => {
 
   res.status(status).json({
     status,
-    message: `Successfully upserted a contact!`,
+    message: `Successfully upserted a student!`,
     data: result.contact,
   });
 };
@@ -93,7 +111,22 @@ export const upsertContactController = async (req, res, next) => {
 export const patchContactController = async (req, res, next) => {
   const { Id } = req.params;
   const { _id: userId } = req.user;
-  const result = await updateContact(Id, userId, req.body);
+  const photo = req.file;
+
+  let photoUrl;
+
+  if (photo) {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileUploadDir(photo);
+    }
+  }
+
+  const result = await updateContact(Id, userId, {
+    ...req.body,
+    photo: photoUrl,
+  });
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
@@ -102,7 +135,7 @@ export const patchContactController = async (req, res, next) => {
 
   res.json({
     status: 200,
-    message: `Successfully upserted a contact!`,
+    message: `Successfully upserted a student!`,
     data: result.contact,
   });
 };

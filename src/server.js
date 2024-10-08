@@ -6,14 +6,16 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { env } from './utils/env.js';
 import cookieParser from 'cookie-parser';
+import { UPLOAD_DIR } from './constans/index.js';
 
-const PORT = Number(env('PORT', '8000'));
+const PORT = Number(env('PORT', '4000'));
 
 export const setupServer = () => {
   const app = express();
 
   app.use(logger);
   app.use(cors());
+  app.use('/uploads', express.static(UPLOAD_DIR));
   app.use(cookieParser());
   app.use(
     express.json({
