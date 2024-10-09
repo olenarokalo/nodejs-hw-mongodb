@@ -153,7 +153,7 @@ export const resetPassword = async (payload) => {
     return error;
   }
 
-  const user = UserCollection.findOne({
+  const user = await UserCollection.findOne({
     email: entries.email,
     _id: entries.sub,
   });
