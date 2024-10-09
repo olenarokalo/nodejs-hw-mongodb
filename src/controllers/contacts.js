@@ -103,7 +103,7 @@ export const upsertContactController = async (req, res, next) => {
 
   res.status(status).json({
     status,
-    message: `Successfully upserted a student!`,
+    message: `Successfully upserted a сontact!`,
     data: result.contact,
   });
 };
