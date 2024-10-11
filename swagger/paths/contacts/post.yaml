@@ -13,10 +13,7 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - email
-          - isFavourite
           - contactType
-          - photo
         properties:
           name:
             description: 'Contacts name'
@@ -36,7 +33,14 @@ requestBody:
           contactType:
             description: 'Contact type'
             type: string
-            enum: ['work', 'home', 'personal']
+          userId:
+            description: "Contact's parent id"
+            type: string
+            example: 66fe6d0b5b7ffb5c70dfd498
+          photo:
+            description: "Link to contact's photo"
+            type: string
+            format: binary
 responses:
   '201':
     description: Creates a contact

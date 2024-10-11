@@ -188,10 +188,7 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "email",
-                  "isFavourite",
-                  "contactType",
-                  "photo"
+                  "contactType"
                 ],
                 "properties": {
                   "name": {
@@ -215,12 +212,17 @@
                   },
                   "contactType": {
                     "description": "Contact type",
+                    "type": "string"
+                  },
+                  "userId": {
+                    "description": "Contact's parent id",
                     "type": "string",
-                    "enum": [
-                      "work",
-                      "home",
-                      "personal"
-                    ]
+                    "example": "66fe6d0b5b7ffb5c70dfd498"
+                  },
+                  "photo": {
+                    "description": "Link to contact's photo",
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
@@ -379,6 +381,16 @@
                       "home",
                       "personal"
                     ]
+                  },
+                  "userId": {
+                    "description": "Contact's parent id",
+                    "type": "string",
+                    "example": "66fe6d0b5b7ffb5c70dfd498"
+                  },
+                  "photo": {
+                    "description": "Link to contact's photo",
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
@@ -531,7 +543,6 @@
           "name",
           "phoneNumber",
           "email",
-          "isFavourite",
           "contactType"
         ],
         "properties": {
@@ -569,7 +580,7 @@
             ]
           },
           "userId": {
-            "description": "Contact's user id",
+            "description": "Contact's parent id",
             "type": "string",
             "example": "65e4decdd286b30065d54af9"
           },
