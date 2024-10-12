@@ -214,11 +214,6 @@
                     "description": "Contact type",
                     "type": "string"
                   },
-                  "userId": {
-                    "description": "Contact's parent id",
-                    "type": "string",
-                    "example": "66fe6d0b5b7ffb5c70dfd498"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
@@ -381,11 +376,6 @@
                       "home",
                       "personal"
                     ]
-                  },
-                  "userId": {
-                    "description": "Contact's parent id",
-                    "type": "string",
-                    "example": "66fe6d0b5b7ffb5c70dfd498"
                   },
                   "photo": {
                     "description": "Link to contact's photo",
